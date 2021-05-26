@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Speech Recognition using Python</title>
+  <link rel="stylesheet" href="{{url_for('static',filename='styles/home.css')}}">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,500&display=swap"
+    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="box" id="default" onclick="opened('speechContainer',this)">
+      <span>Audio file to text converter</span>
+
+    </div>
+    <div class="box" onclick="opened('textContainer',this)">
+      Text to speech converter
+    </div>
+  </nav>
+  <div id="speechContainer" class="tab">
+    <h1>Upload Audio File</h1>
+    <form method="POST" enctype="multipart/form-data" onsubmit="startloading()">
+      <label for="file">
+        <p class="upload">File</p>
+      </label>
+      <input accept=".wav" type="file" onchange="checkbuttondisabled(this)" id="file" name="file">
+
+      <br>
+      <div class="buttonBox">
+
+
+        <button type="submit" class="upload"> Transcribe</button>
+        <div id="loading">
+
+        </div>
+      </div>
+
+
+    </form>
+
+
+    {% if transcript!='' %}
+    <hr>
+    <div id="speechTranscribeContainer">
+      <h1>Transcript data</h1>
+      <p id="data">{{transcript}}</p>
+      <div class="download" onclick="download('AudioToText.txt')">
+        Download
+      </div>
+    </div>
+
+    {% endif %}
+
+    {% if error!='' %}
+    <hr>
+    <div id="speechTranscribeContainer" class="error">
+      <h3>{{error}}</h3>
+    </div>
+    {% endif %}
+  </div>
+  <div id="textContainer" class="tab">
+    <h1>Enter text</h1>
+    <form method="POST"  enctype="multipart/form-data" >
+     
+      <textarea name="text" id="text" minlength="10" placeholder="Enter text"  required></textarea>
+
+      <br>
+      <div class="buttonBox">
+
+
+        <button type="submit"  class="upload"> Transcribe</button>
+       
+      </div>
+
+
+    </form>
+    
+  </div>
+  <script src="{{url_for('static',filename='js/index.js')}}"></script>
+
+</body>
+
+</html>
