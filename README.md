@@ -2,7 +2,11 @@
 Change the audio or text into text or speech respectively.
 
 ### Used technologies
- 
+  * **Python**
+  * **Javascript** 
+   * **Flask**
+  * **HTML/CSS**
+   
 ### Audio_to_text
 You can upload any `.wav` file and then you can transcribe it into text and download it in text file.
 
